@@ -1,0 +1,11 @@
+# Lines starting with '#' are comments.
+# Each line is a file pattern followed by one or more owners.
+
+# These owners will be the default owners for everything in the repo.
+*       @Tebro
+
+apis/auth.md    @Arcada-Devops-2017/auth
+apis/products.md    @Arcada-Devops-2017/products
+apis/orders.md    @Arcada-Devops-2017/orders
+apis/stores.md    @Arcada-Devops-2017/stores
+
