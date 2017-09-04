@@ -27,9 +27,21 @@ Resources:
     Properties: 
       ImageId: ami-cec307b7
       InstanceType: "m3.medium"
-      KeyName: richard
+      KeyName: arcada
       SecurityGroups: 
         - Ref: securityGroup
       Tags: 
         - Key: Name
           Value: Auth
+
+    frontInstance:
+    Type: "AWS::EC2::Instance"
+    Properties: 
+      ImageId: ami-cec307b7
+      InstanceType: "m3.medium"
+      KeyName: arcada
+      SecurityGroups: 
+        - Ref: securityGroup
+      Tags: 
+        - Key: Name
+          Value: Frontend
