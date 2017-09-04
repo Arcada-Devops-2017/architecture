@@ -34,7 +34,7 @@ Resources:
         - Key: Name
           Value: Auth
 
-    frontInstance:
+  frontInstance:
     Type: "AWS::EC2::Instance"
     Properties: 
       ImageId: ami-cec307b7
