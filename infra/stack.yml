@@ -40,7 +40,6 @@ Resources:
   demoDns:
     Type: "AWS::Route53::RecordSet"
     Properties: 
-      AliasTarget: AliasTarget
       HostedZoneId: !Ref hostedZone
       Name: "demo.arcada.nitor.zone"
       Type: A
