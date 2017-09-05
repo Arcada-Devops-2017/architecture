@@ -7,6 +7,15 @@
     - apache2
     - openjdk-8-jre
 
+- name: Enable apache proxy modules
+  register: apache_mods
+  apache2_module:
+    state: present
+    name: "{{ item }}"
+  with_items:
+    - proxy
+    - proxy_http
+
 - name: Configure apache
   register: apache_conf
   copy:
@@ -14,7 +23,7 @@
     dest: /etc/apache2/sites-enabled/demo.conf
 
 - name: Restart apache
-  when: apache_conf.changed
+  when: apache_conf.changed or apache_mods.changed
   service:
     name: apache2
     state: restarted
