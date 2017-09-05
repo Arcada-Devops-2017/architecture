@@ -1,3 +1,8 @@
+Parameters:
+  hostedZone:
+    Description: ID of Route 53 hosted zone
+    Type: string
+    Default: ZBE1Z7TXR83UH
 Resources:
   securityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -32,6 +37,18 @@ Resources:
       Tags: 
         - Key: Name
           Value: Demo
+  demoDns:
+    Type: "AWS::Route53::RecordSet"
+    Properties: 
+      AliasTarget: AliasTarget
+      HostedZoneId: !Ref hostedZone
+      Name: "demo.arcada.nitor.zone"
+      Type: A
+      TTL: '60'
+      ResourceRecords:
+        - !GetAtt demoInstance.PublicIp
+
+
 
   authInstance:
     Type: "AWS::EC2::Instance"
