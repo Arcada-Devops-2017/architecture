@@ -46,29 +46,3 @@ Resources:
       TTL: '60'
       ResourceRecords:
         - !GetAtt demoInstance.PublicIp
-
-
-
-  authInstance:
-    Type: "AWS::EC2::Instance"
-    Properties: 
-      ImageId: ami-cec307b7
-      InstanceType: "t2.small"
-      KeyName: arcada
-      SecurityGroups: 
-        - Ref: securityGroup
-      Tags: 
-        - Key: Name
-          Value: Auth
-
-  frontInstance:
-    Type: "AWS::EC2::Instance"
-    Properties: 
-      ImageId: ami-cec307b7
-      InstanceType: "t2.small"
-      KeyName: arcada
-      SecurityGroups: 
-        - Ref: securityGroup
-      Tags: 
-        - Key: Name
-          Value: Frontend
