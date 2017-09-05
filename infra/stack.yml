@@ -1,7 +1,7 @@
 Parameters:
   hostedZone:
     Description: ID of Route 53 hosted zone
-    Type: string
+    Type: String
     Default: ZBE1Z7TXR83UH
 Resources:
   securityGroup:
