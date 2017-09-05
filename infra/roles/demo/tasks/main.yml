@@ -48,4 +48,4 @@
     dest: /home/ubuntu/restartApp.sh
     owner: ubuntu
     group: ubuntu
-    mode: 700
+    mode: 0700
