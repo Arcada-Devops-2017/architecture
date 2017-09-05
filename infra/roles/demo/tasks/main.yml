@@ -1,8 +1,23 @@
 ---
-- name: Install apache
+- name: Install packages
   apt:
-    name: apache2
+    name: "{{ item }}"
     state: present
+  with_items:
+    - apache2
+    - openjdk-8-jre
+
+- name: Configure apache
+  register: apache_conf
+  copy:
+    src: apache_vhost
+    dest: /etc/apache2/sites-enabled/demo.conf
+
+- name: Restart apache
+  when: apache_conf.changed
+  service:
+    name: apache2
+    state: restarted
 
 - name: Start apache
   service:
