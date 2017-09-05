@@ -9,8 +9,8 @@ Resources:
         ToPort: '22'
         CidrIp: 0.0.0.0/0
       - IpProtocol: tcp
-        FromPort: '8080'
-        ToPort: '8080'
+        FromPort: '80'
+        ToPort: '80'
         CidrIp: 0.0.0.0/0
   securityGrouIngress:
     Type: AWS::EC2::SecurityGroupIngress
@@ -21,12 +21,23 @@ Resources:
       SourceSecurityGroupId: !GetAtt securityGroup.GroupId
       GroupId: !GetAtt securityGroup.GroupId
 
+  demoInstance:
+    Type: "AWS::EC2::Instance"
+    Properties: 
+      ImageId: ami-cec307b7
+      InstanceType: "t2.small"
+      KeyName: arcada
+      SecurityGroups: 
+        - Ref: securityGroup
+      Tags: 
+        - Key: Name
+          Value: Demo
 
   authInstance:
     Type: "AWS::EC2::Instance"
     Properties: 
       ImageId: ami-cec307b7
-      InstanceType: "m3.medium"
+      InstanceType: "t2.small"
       KeyName: arcada
       SecurityGroups: 
         - Ref: securityGroup
@@ -38,7 +49,7 @@ Resources:
     Type: "AWS::EC2::Instance"
     Properties: 
       ImageId: ami-cec307b7
-      InstanceType: "m3.medium"
+      InstanceType: "t2.small"
       KeyName: arcada
       SecurityGroups: 
         - Ref: securityGroup

@@ -1,8 +1,14 @@
 ---
-# Auth server
+# All servers
 - hosts: "tag_aws_cloudformation_stack_name_infra"
   user: ubuntu
   gather_facts: True
   become: yes
   roles:
     - common
+
+# Demo server
+- hosts: tag_Name_Demo
+  user: ubuntu
+  roles:
+    - demo
