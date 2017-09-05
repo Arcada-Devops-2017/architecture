@@ -10,5 +10,6 @@
 # Demo server
 - hosts: tag_Name_Demo
   user: ubuntu
+  become: yes
   roles:
     - demo
