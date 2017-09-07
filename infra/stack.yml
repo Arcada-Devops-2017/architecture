@@ -30,7 +30,7 @@ Resources:
     Type: "AWS::EC2::Instance"
     Properties: 
       ImageId: ami-cec307b7
-      InstanceType: "t2.tiny"
+      InstanceType: "t2.small"
       KeyName: arcada
       SecurityGroups: 
         - Ref: securityGroup
