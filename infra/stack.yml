@@ -46,3 +46,24 @@ Resources:
       TTL: '60'
       ResourceRecords:
         - !GetAtt demoInstance.PublicIp
+
+  productInstance:
+    Type: "AWS::EC2::Instance"
+    Properties: 
+      ImageId: ami-cec307b7
+      InstanceType: "t2.small"
+      KeyName: arcada
+      SecurityGroups: 
+        - Ref: securityGroup
+      Tags: 
+        - Key: Name
+          Value: Product
+  productDns:
+    Type: "AWS::Route53::RecordSet"
+    Properties: 
+      HostedZoneId: !Ref hostedZone
+      Name: "product.arcada.nitor.zone"
+      Type: A
+      TTL: '60'
+      ResourceRecords:
+        - !GetAtt demoInstance.PublicIp
