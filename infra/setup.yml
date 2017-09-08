@@ -7,9 +7,9 @@
   roles:
     - common
 
-# Demo server
-- hosts: tag_Name_Demo
+# Orders server
+- hosts: tag_Name_Orders
   user: ubuntu
   become: yes
   roles:
-    - demo
+    - orders
