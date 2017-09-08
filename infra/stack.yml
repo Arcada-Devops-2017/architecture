@@ -25,6 +25,48 @@ Resources:
       ToPort: 65535
       SourceSecurityGroupId: !GetAtt securityGroup.GroupId
       GroupId: !GetAtt securityGroup.GroupId
+
+  demoInstance:
+    Type: "AWS::EC2::Instance"
+    Properties: 
+      ImageId: ami-cec307b7
+      InstanceType: "t2.small"
+      KeyName: arcada
+      SecurityGroups: 
+        - Ref: securityGroup
+      Tags: 
+        - Key: Name
+          Value: Demo
+  demoDns:
+    Type: "AWS::Route53::RecordSet"
+    Properties: 
+      HostedZoneId: !Ref hostedZone
+      Name: "demo.arcada.nitor.zone"
+      Type: A
+      TTL: '60'
+      ResourceRecords:
+        - !GetAtt demoInstance.PublicIp
+
+  productInstance:
+    Type: "AWS::EC2::Instance"
+    Properties: 
+      ImageId: ami-cec307b7
+      InstanceType: "t2.small"
+      KeyName: arcada
+      SecurityGroups: 
+        - Ref: securityGroup
+      Tags: 
+        - Key: Name
+          Value: Product
+  productDns:
+    Type: "AWS::Route53::RecordSet"
+    Properties: 
+      HostedZoneId: !Ref hostedZone
+      Name: "product.arcada.nitor.zone"
+      Type: A
+      TTL: '60'
+      ResourceRecords:
+        - !GetAtt demoInstance.PublicIp
 	  
   ordersInstance:
     Type: "AWS::EC2::Instance"
