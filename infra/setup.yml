@@ -6,10 +6,16 @@
   become: yes
   roles:
     - common
-
 # Demo server
 - hosts: tag_Name_Demo
   user: ubuntu
   become: yes
   roles:
     - demo
+
+# Orders server
+- hosts: tag_Name_Orders
+  user: ubuntu
+  become: yes
+  roles:
+    - orders
