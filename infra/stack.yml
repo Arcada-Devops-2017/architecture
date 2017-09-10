@@ -67,7 +67,7 @@ Resources:
       TTL: '60'
       ResourceRecords:
         - !GetAtt demoInstance.PublicIp
-	  
+
   ordersInstance:
     Type: "AWS::EC2::Instance"
     Properties: 
