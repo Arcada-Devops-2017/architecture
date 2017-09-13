@@ -67,7 +67,7 @@ Resources:
       Type: A
       TTL: '60'
       ResourceRecords:
-        - !GetAtt demoInstance.PublicIp
+        - !GetAtt productInstance.PublicIp
 #PRODUCTS INFRA END
 
 #ORDERS INFR START
