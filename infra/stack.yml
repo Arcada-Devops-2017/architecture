@@ -67,3 +67,27 @@ Resources:
       TTL: '60'
       ResourceRecords:
         - !GetAtt demoInstance.PublicIp
+
+ #FRONTEND INFRA START
+    frontendInstance:
+    Type: "AWS::EC2::Instance"
+    Properties: 
+      ImageId: ami-cec307b7
+      InstanceType: "t2.small"
+      KeyName: arcada
+      SecurityGroups: 
+        - Ref: securityGroup
+      Tags: 
+        - Key: Name
+          Value: Demo
+  frontendDns:
+    Type: "AWS::Route53::RecordSet"
+    Properties: 
+      HostedZoneId: !Ref hostedZone
+      Name: "frontend.arcada.nitor.zone"
+      Type: A
+      TTL: '60'
+      ResourceRecords:
+        - !GetAtt frontendInstance.PublicIp
+
+  #FRONTEND INFRA END
