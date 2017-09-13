@@ -50,9 +50,14 @@
     group: ubuntu
     mode: 0700
 
+- user:
+    name: orders
+    comment: "orders"
+    uid: 1337
+
 - name: Set up multiple authorized keys
   authorized_key:
-    user: deploy
+    user: orders
     state: present
     key: '{{ item }}'
     with_file:
