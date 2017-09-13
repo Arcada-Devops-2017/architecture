@@ -12,7 +12,7 @@
   register: apache_conf
   copy:
     src: apache_vhost
-    dest: /etc/apache2/sites-enabled/stores.conf
+    dest: /etc/apache2/sites-enabled/auth.conf
 
 - name: Restart apache
   when: apache_conf.changed or apache_mods.changed
