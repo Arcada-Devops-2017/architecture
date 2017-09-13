@@ -5,15 +5,7 @@
     state: present
   with_items:
     - apache2
-
-- name: Enable apache proxy modules
-  register: apache_mods
-  apache2_module:
-    state: present
-    name: "{{ item }}"
-  with_items:
-    - proxy
-    - proxy_http
+    - libapache2-mod-php5
 
 - name: Configure apache
   register: apache_conf
@@ -32,3 +24,6 @@
     name: apache2
     state: started
     enabled: yes
+
+- name: Copy testfile
+  copy: src=index.php dest=/var/www/stores/index.php mode=0664
