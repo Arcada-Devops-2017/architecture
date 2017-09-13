@@ -3,6 +3,6 @@
 
 cd /var/www/frontend
 
-git checkout -- .
-git pull
+sudo git checkout -- .
+sudo git pull
 
