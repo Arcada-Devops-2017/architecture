@@ -19,3 +19,10 @@
   become: yes
   roles:
     - orders
+    
+# Stores server
+- hosts: tag_Name_Stores
+  user: ubuntu
+  become: yes
+  roles:
+    - stores

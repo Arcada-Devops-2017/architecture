@@ -70,7 +70,7 @@ Resources:
         - !GetAtt productInstance.PublicIp
 #PRODUCTS INFRA END
 
-#ORDERS INFR START
+#ORDERS INFRA START
   ordersInstance:
     Type: "AWS::EC2::Instance"
     Properties: 
@@ -91,9 +91,10 @@ Resources:
       TTL: '60'
       ResourceRecords:
         - !GetAtt ordersInstance.PublicIp
+        
 #ORDERS INFRA END
 
- #FRONTEND INFRA START
+#FRONTEND INFRA START
   frontendInstance:
     Type: "AWS::EC2::Instance"
     Properties: 
@@ -114,4 +115,28 @@ Resources:
       TTL: '60'
       ResourceRecords:
         - !GetAtt frontendInstance.PublicIp
-  #FRONTEND INFRA END
+#FRONTEND INFRA END
+
+#STORES INFRA START
+  storesInstance:
+    Type: "AWS::EC2::Instance"
+    Properties: 
+      ImageId: ami-cec307b7
+      InstanceType: "t2.small"
+      KeyName: arcada
+      SecurityGroups: 
+        - Ref: securityGroup
+      Tags: 
+        - Key: Name
+          Value: Stores
+  storesDns:
+    Type: "AWS::Route53::RecordSet"
+    Properties: 
+      HostedZoneId: !Ref hostedZone
+      Name: "stores.arcada.nitor.zone"
+      Type: A
+      TTL: '60'
+      ResourceRecords:
+        - !GetAtt storesInstance.PublicIp
+
+# STORES INFRA END
