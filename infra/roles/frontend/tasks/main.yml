@@ -36,6 +36,14 @@
     group: ubuntu
     mode: 0700
 
+- name: Set up authorized keys
+  authorized_key:
+    user: ubuntu
+    state: present
+    key: '{{ item }}'
+  with_file:
+    - ssh_key.pub
+
 
 - name: Clone application repo
   git:
