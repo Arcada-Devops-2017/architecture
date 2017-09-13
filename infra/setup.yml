@@ -25,4 +25,4 @@
   user: ubuntu
   become: yes
   roles:
-    - Auth
+    - auth

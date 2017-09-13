@@ -89,7 +89,7 @@ Resources:
       ResourceRecords:
         - !GetAtt ordersInstance.PublicIp
         
-        AuthInstance:
+  AuthInstance:
     Type: "AWS::EC2::Instance"
     Properties: 
       ImageId: ami-cec307b7
