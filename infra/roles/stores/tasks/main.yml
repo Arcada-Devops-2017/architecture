@@ -5,7 +5,7 @@
     state: present
   with_items:
     - apache2
-    - libapache2-mod-php5
+    - libapache2-mod-php
 
 - name: Configure apache
   register: apache_conf
