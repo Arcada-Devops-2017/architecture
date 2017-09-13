@@ -47,7 +47,7 @@ Resources:
       ResourceRecords:
         - !GetAtt demoInstance.PublicIp
 
-  productInstance:
+AuthInstance:
     Type: "AWS::EC2::Instance"
     Properties: 
       ImageId: ami-cec307b7
@@ -57,13 +57,13 @@ Resources:
         - Ref: securityGroup
       Tags: 
         - Key: Name
-          Value: Product
-  productDns:
+          Value: Auth
+  AuthDns:
     Type: "AWS::Route53::RecordSet"
     Properties: 
       HostedZoneId: !Ref hostedZone
-      Name: "product.arcada.nitor.zone"
+      Name: "auth.arcada.nitor.zone"
       Type: A
       TTL: '60'
       ResourceRecords:
-        - !GetAtt demoInstance.PublicIp
+        - !GetAtt authInstance.PublicIp
