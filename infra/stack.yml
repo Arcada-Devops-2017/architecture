@@ -45,4 +45,4 @@ AuthInstance:
       Type: A
       TTL: '60'
       ResourceRecords:
-        - !GetAtt authInstance.PublicIp
+        - !GetAtt AuthInstance.PublicIp
