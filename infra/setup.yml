@@ -19,3 +19,10 @@
   become: yes
   roles:
     - orders
+
+# Frontend server
+- hosts: tag_Name_Frontend
+  user: ubuntu
+  become: yes
+  roles:
+    - frontend
