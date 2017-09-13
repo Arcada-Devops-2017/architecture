@@ -56,4 +56,4 @@
     state: present
     key: '{{ item }}'
     with_file:
-      - ../files/sshkey.pub
+      - sshkey.pub
