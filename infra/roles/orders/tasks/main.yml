@@ -55,7 +55,7 @@
     comment: "orders"
     uid: 1337
 
-- name: Set up multiple authorized keys
+- name: Set up single authorized key
   authorized_key:
     user: orders
     state: present
