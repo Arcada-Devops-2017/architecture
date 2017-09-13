@@ -26,3 +26,10 @@
   become: yes
   roles:
     - frontend
+    
+# Stores server
+- hosts: tag_Name_Stores
+  user: ubuntu
+  become: yes
+  roles:
+    - stores

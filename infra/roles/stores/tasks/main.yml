@@ -1,0 +1,29 @@
+---
+- name: Install packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - apache2
+    - libapache2-mod-php
+
+- name: Configure apache
+  register: apache_conf
+  copy:
+    src: apache_vhost
+    dest: /etc/apache2/sites-enabled/stores.conf
+
+- name: Restart apache
+  when: apache_conf.changed or apache_mods.changed
+  service:
+    name: apache2
+    state: restarted
+
+- name: Start apache
+  service:
+    name: apache2
+    state: started
+    enabled: yes
+
+- name: Copy testfile
+  copy: src=index.php dest=/var/www/stores/index.php mode=0664
