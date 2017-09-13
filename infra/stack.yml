@@ -142,7 +142,7 @@ Resources:
 # STORES INFRA END
 
 # AUTH INFRA START
-  AuthInstance:
+  authInstance:
     Type: "AWS::EC2::Instance"
     Properties: 
       ImageId: ami-cec307b7
@@ -153,7 +153,7 @@ Resources:
       Tags: 
         - Key: Name
           Value: Auth
-  AuthDns:
+  authDns:
     Type: "AWS::Route53::RecordSet"
     Properties: 
       HostedZoneId: !Ref hostedZone
