@@ -19,3 +19,10 @@
   become: yes
   roles:
     - orders
+    
+# Auth server
+- hosts: tag_Name_Auth
+  user: ubuntu
+  become: yes
+  roles:
+    - Auth
