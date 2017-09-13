@@ -1,0 +1,43 @@
+---
+- name: Install packages
+  apt:
+    name: apache2
+    state: present
+
+- name: Configure apache
+  register: apache_conf
+  copy:
+    src: apache_vhost
+    dest: /etc/apache2/sites-enabled/frontend.conf
+
+- name: Create document root
+  file:
+    state: directory
+    path: /var/www/frontend
+    mode: 0755
+
+- name: Restart apache
+  when: apache_conf.changed
+  service:
+    name: apache2
+    state: restarted
+
+- name: Start apache
+  service:
+    name: apache2
+    state: started
+    enabled: yes
+
+- name: Upload update script
+  copy:
+    src: updateApp.sh
+    dest: /home/ubuntu/updateApp.sh
+    owner: ubuntu
+    group: ubuntu
+    mode: 0700
+
+
+- name: Clone application repo
+  git:
+    repo: 'https://github.com/Arcada-Devops-2017/frontend.git'
+    dest: /var/www/frontend
