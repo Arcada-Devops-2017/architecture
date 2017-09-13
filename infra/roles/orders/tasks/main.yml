@@ -60,5 +60,5 @@
     user: orders
     state: present
     key: '{{ item }}'
-    with_file:
-      - sshkey.pub
+  with_file:
+    - sshkey.pub
