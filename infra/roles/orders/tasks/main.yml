@@ -34,6 +34,14 @@
     state: started
     enabled: yes
 
+- name: Upload systemd service file
+  copy:
+    src: JavaApp.service
+    dest: /etc/systemd/system/JavaApp.service
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Upload restart script
   copy:
     src: restartApp.sh
