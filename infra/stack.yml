@@ -69,7 +69,7 @@ Resources:
         - !GetAtt demoInstance.PublicIp
 
  #FRONTEND INFRA START
-    frontendInstance:
+  frontendInstance:
     Type: "AWS::EC2::Instance"
     Properties: 
       ImageId: ami-cec307b7
@@ -79,7 +79,7 @@ Resources:
         - Ref: securityGroup
       Tags: 
         - Key: Name
-          Value: Demo
+          Value: Frontend
   frontendDns:
     Type: "AWS::Route53::RecordSet"
     Properties: 
