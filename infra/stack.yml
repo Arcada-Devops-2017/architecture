@@ -88,3 +88,24 @@ Resources:
       TTL: '60'
       ResourceRecords:
         - !GetAtt ordersInstance.PublicIp
+        
+        AuthInstance:
+    Type: "AWS::EC2::Instance"
+    Properties: 
+      ImageId: ami-cec307b7
+      InstanceType: "t2.small"
+      KeyName: arcada
+      SecurityGroups: 
+        - Ref: securityGroup
+      Tags: 
+        - Key: Name
+          Value: Auth
+  AuthDns:
+    Type: "AWS::Route53::RecordSet"
+    Properties: 
+      HostedZoneId: !Ref hostedZone
+      Name: "auth.arcada.nitor.zone"
+      Type: A
+      TTL: '60'
+      ResourceRecords:
+        - !GetAtt authInstance.PublicIp
