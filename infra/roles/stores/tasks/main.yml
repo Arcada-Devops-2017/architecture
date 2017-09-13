@@ -5,7 +5,7 @@
     state: present
   with_items:
     - apache2
-    - libapache2-mod-php5
+    - libapache2-mod-php
 
 - name: Configure apache
   register: apache_conf
@@ -14,7 +14,7 @@
     dest: /etc/apache2/sites-enabled/stores.conf
 
 - name: Restart apache
-  when: apache_conf.changed or apache_mods.changed
+  when: apache_conf.changed
   service:
     name: apache2
     state: restarted
@@ -24,6 +24,15 @@
     name: apache2
     state: started
     enabled: yes
+
+- name: Creates the /var/www/stores directory
+  file:
+    path: /var/www/stores
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0775
+    recurse: yes
 
 - name: Copy testfile
   copy: src=index.php dest=/var/www/stores/index.php mode=0664
