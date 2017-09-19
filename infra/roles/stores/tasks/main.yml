@@ -25,18 +25,6 @@
     state: started
     enabled: yes
 
-- name: Creates the /var/www/stores directory
-  file:
-    path: /var/www/stores
-    state: directory
-    owner: www-data
-    group: www-data
-    mode: 0775
-    recurse: yes
-
-- name: Copy testfile
-  copy: src=index.php dest=/var/www/stores/index.php mode=0664
-
 - name: Set up authorized keys
   authorized_key:
     user: ubuntu
