@@ -1,0 +1,7 @@
+<VirtualHost *:80>
+
+    ServerName frontend.arcada.nitor.zone
+
+    DocumentRoot "/var/www/frontend/src"
+
+</VirtualHost>

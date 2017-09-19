@@ -6,12 +6,13 @@
   with_items:
     - apache2
     - libapache2-mod-php
+    - php
 
 - name: Configure apache
   register: apache_conf
   copy:
     src: apache_vhost
-    dest: /etc/apache2/sites-enabled/stores.conf
+    dest: /etc/apache2/sites-enabled/auth.conf
 
 - name: Restart apache
   when: apache_conf.changed
@@ -24,10 +25,10 @@
     name: apache2
     state: started
     enabled: yes
-
-- name: Creates the /var/www/stores directory
+    
+- name: Creates the /var/www/auth directory
   file:
-    path: /var/www/stores
+    path: /var/www/auth
     state: directory
     owner: www-data
     group: www-data
@@ -35,22 +36,4 @@
     recurse: yes
 
 - name: Copy testfile
-  copy: src=index.php dest=/var/www/stores/index.php mode=0664
-
-- user:
-    name: stores
-    comment: "stores"
-    uid: 8888
-
-- name: Set up authorized keys
-  authorized_key:
-    user: stores
-    state: present
-    key: '{{ item }}'
-  with_file:
-    - ssh_key.pub
-
-- name: Clone application repo
-  git:
-    repo: 'https://github.com/Arcada-Devops-2017/stores.git'
-    dest: /var/www/stores
+  copy: src=index.php dest=/var/www/auth/index.php mode=0664

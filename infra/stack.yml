@@ -140,3 +140,27 @@ Resources:
         - !GetAtt storesInstance.PublicIp
 
 # STORES INFRA END
+
+# AUTH INFRA START
+  authInstance:
+    Type: "AWS::EC2::Instance"
+    Properties: 
+      ImageId: ami-cec307b7
+      InstanceType: "t2.small"
+      KeyName: arcada
+      SecurityGroups: 
+        - Ref: securityGroup
+      Tags: 
+        - Key: Name
+          Value: Auth
+  authDns:
+    Type: "AWS::Route53::RecordSet"
+    Properties: 
+      HostedZoneId: !Ref hostedZone
+      Name: "auth.arcada.nitor.zone"
+      Type: A
+      TTL: '60'
+      ResourceRecords:
+        - !GetAtt authInstance.PublicIp
+
+# AUTH INFRA END
