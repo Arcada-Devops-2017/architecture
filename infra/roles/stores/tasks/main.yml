@@ -36,3 +36,21 @@
 
 - name: Copy testfile
   copy: src=index.php dest=/var/www/stores/index.php mode=0664
+
+- user:
+    name: stores
+    comment: "stores"
+    uid: 8888
+
+- name: Set up authorized keys
+  authorized_key:
+    user: stores
+    state: present
+    key: '{{ item }}'
+  with_file:
+    - ssh_key.pub
+
+- name: Clone application repo
+  git:
+    repo: 'https://github.com/Arcada-Devops-2017/stores.git'
+    dest: /var/www/stores
