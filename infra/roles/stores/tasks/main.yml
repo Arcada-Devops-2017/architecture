@@ -43,7 +43,7 @@
     state: present
     key: '{{ item }}'
   with_file:
-    - ssh_key.pub
+    - stores_devops.pub
 
 - name: Clone application repo
   git:
