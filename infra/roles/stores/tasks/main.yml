@@ -37,14 +37,9 @@
 - name: Copy testfile
   copy: src=index.php dest=/var/www/stores/index.php mode=0664
 
-- user:
-    name: stores
-    comment: "stores"
-    uid: 8888
-
 - name: Set up authorized keys
   authorized_key:
-    user: stores
+    user: ubuntu
     state: present
     key: '{{ item }}'
   with_file:
@@ -54,3 +49,11 @@
   git:
     repo: 'https://github.com/Arcada-Devops-2017/stores.git'
     dest: /var/www/stores
+
+- name: Upload update script
+  copy:
+    src: update.sh
+    dest: /home/ubuntu/update.sh
+    owner: ubuntu
+    group: ubuntu
+    mode: 0700
