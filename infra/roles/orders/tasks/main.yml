@@ -8,6 +8,7 @@
     - openjdk-8-jre
     - mysql-server
     - mysql-client
+    - python-pip
 
 - name: Install the Python MySQLB module
   pip: name=MySQL-python
