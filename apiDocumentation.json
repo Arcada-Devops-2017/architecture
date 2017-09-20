@@ -1,0 +1,19 @@
+/** How we send data to frontEnd **/
+{
+        "orderId":"",
+        "orderDate":"",
+    "product":
+        {
+            "id": "",
+            "storeId":"",
+            "amount":"",
+             "price":""
+        },
+    "shippingInfo":
+        {
+            "address":"",
+            "postalCode":"",
+            "country":"",
+            "eta":""
+        }
+}
