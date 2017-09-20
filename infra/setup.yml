@@ -42,3 +42,9 @@
   roles:
     - auth
 
+# Products server
+- hosts: tag_Name_Products
+  user: ubuntu
+  become: yes
+  roles:
+    - products
