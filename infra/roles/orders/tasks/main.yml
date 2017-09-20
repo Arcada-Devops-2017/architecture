@@ -9,6 +9,7 @@
     - mysql-server
     - mysql-client
     - python-pip
+    - libmysqlclient-dev
 
 - name: Install the Python MySQLB module
   pip: name=MySQL-python
