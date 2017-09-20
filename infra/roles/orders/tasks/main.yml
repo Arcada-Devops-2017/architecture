@@ -9,6 +9,8 @@
     - mysql-server
     - mysql-client
 
+- name: Install the Python MySQLB module
+  pip: name=MySQL-python
 
 - name: Update MySQL root password for all root accounts
   register: root_password
