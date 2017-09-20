@@ -6,6 +6,62 @@
   with_items:
     - apache2
     - openjdk-8-jre
+    - mysql-server
+    - mysql-client
+
+
+- name: Update MySQL root password for all root accounts
+  register: root_password
+  mysql_user:
+    name: root
+    host: "{{ item }}"
+    password: "{{ mysql_root_pass }}" 
+    state: present
+  with_items:
+    - "{{ ansible_hostname }}"
+    - "127.0.0.1"
+    - "::1"
+    - localhost
+
+- name: Create a new database with name 'orders'
+  mysql_db:
+    name: orders
+    state: present
+
+- name: Setup app mysql user
+  register: user_password
+  mysql_user:
+    name: orders
+    host: "{{ item }}"
+    priv: "orders.*:ALL" 
+    password: "{{ mysql_user_pass }}"
+    state: present
+  with_items:
+    - "127.0.0.1"
+    - "localhost"
+
+- name: Ensure Anonymous user(s) are not in the database
+  register: anon_user
+  mysql_user: 
+    name: ''
+    host: "{{ item }}"
+    state: absent
+  with_items:
+    - localhost
+    - "127.0.0.1"
+    - "{{ ansible_hostname }}"
+
+- name: Remove the test database
+  register: test_db
+  mysql_db:
+    name: test
+    state: absent
+
+- name: Restart mysql
+  when: root_password.changed or anon_user.changed or test_db.changed or user_password.changed
+  service:
+    name: mysql
+    state: restarted
 
 - name: Enable apache proxy modules
   register: apache_mods
