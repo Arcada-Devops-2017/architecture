@@ -1,0 +1,6 @@
+<VirtualHost *:80>
+
+    ServerName product.arcada.nitor.zone
+
+    DocumentRoot "/var/www/product"
+</VirtualHost>
