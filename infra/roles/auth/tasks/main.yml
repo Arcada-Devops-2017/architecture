@@ -15,7 +15,7 @@
     dest: /etc/apache2/sites-enabled/auth.conf
 
 - name: Restart apache
-  when: apache_conf.changed or apache_mods.changed
+  when: apache_conf.changed
   service:
     name: apache2
     state: restarted
