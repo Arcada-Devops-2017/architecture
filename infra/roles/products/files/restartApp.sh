@@ -1,3 +1,6 @@
 #!/bin/bash
 
-sudo systemctl restart JavaApp.service
+cd /var/www/product
+
+sudo git checkout -- .
+sudo git pull

@@ -2,5 +2,5 @@
 
     ServerName product.arcada.nitor.zone
 
-    ProxyPass "/"  "http://localhost:8080/"
+    DocumentRoot "/var/www/product"
 </VirtualHost>
