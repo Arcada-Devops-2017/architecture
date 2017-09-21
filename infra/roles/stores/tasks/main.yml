@@ -8,6 +8,9 @@
     - mysql-client
     - apache2
     - libapache2-mod-php
+    - python-pip
+- name: Install the Python MySQLB module
+  pip: name=MySQL-python
     
 - name: Copy the root credentials as .my.cnf file
   template: src=root.cnf.j2 dest=~/.my.cnf mode=0600
