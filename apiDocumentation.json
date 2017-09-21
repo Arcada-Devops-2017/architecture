@@ -1,5 +1,6 @@
 /** How we send data to frontEnd **/
 {
+        "response":"OK or Failed to get data because of ",
         "orderId":"",
         "orderDate":"",
     "product":
@@ -13,7 +14,40 @@
         {
             "address":"",
             "postalCode":"",
-            "country":"",
-            "eta":""
+            "country":""
         }
 }
+/** END How we send data to frontEnd **/
+
+
+/**how to get data from us**/
+{
+    "response":"authToken OK or Failed",
+    "authToken":""
+}
+
+
+/** END how to get data from us**/
+
+
+/** How to save order data**/
+
+{
+    "response":"OK or wrong value on field",
+    "authToken": "",
+"product":
+    {
+        "id": "",
+        "storeId":"",
+        "amount":"",
+         "price":""
+    },
+"shippingInfo":
+    {
+        "address":"",
+        "postalCode":"",
+        "country":"",
+        "eta":""
+    }
+}
+/** END How to save order data**/
