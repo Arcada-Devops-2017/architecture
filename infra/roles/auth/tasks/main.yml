@@ -26,14 +26,23 @@
     state: started
     enabled: yes
     
-- name: Creates the /var/www/auth directory
-  file:
-    path: /var/www/auth
-    state: directory
-    owner: www-data
-    group: www-data
-    mode: 0775
-    recurse: yes
+- name: Set up authorized keys
+  authorized_key:
+    user: ubuntu
+    state: present
+    key: '{{ item }}'
+  with_file:
+    - auth.pub
 
-- name: Copy testfile
-  copy: src=index.php dest=/var/www/auth/index.php mode=0664
+- name: Clone application repo
+  git:
+    repo: 'https://github.com/Arcada-Devops-2017/auth.git'
+    dest: /var/www/auth
+
+- name: Upload update script
+  copy:
+    src: update.sh
+    dest: /home/ubuntu/update.sh
+    owner: ubuntu
+    group: ubuntu
+    mode: 0700
