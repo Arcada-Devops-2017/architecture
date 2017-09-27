@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 27, 2017 at 02:02 PM
+-- Generation Time: Sep 27, 2017 at 07:45 PM
 -- Server version: 5.7.19-0ubuntu0.16.04.1
 -- PHP Version: 5.6.17-3ubuntu1
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `arcada_devops`
+-- Database: `stores`
 --
 
 -- --------------------------------------------------------
@@ -26,13 +26,18 @@ SET time_zone = "+00:00";
 -- Table structure for table `stores`
 --
 
-CREATE TABLE `stores` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `stores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE latin1_general_ci NOT NULL,
   `address` varchar(200) COLLATE latin1_general_ci NOT NULL,
   `phone` varchar(15) COLLATE latin1_general_ci NOT NULL,
-  `email` varchar(100) COLLATE latin1_general_ci NOT NULL
+  `email` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- RELATIONS FOR TABLE `stores`:
+--
 
 -- --------------------------------------------------------
 
@@ -40,36 +45,18 @@ CREATE TABLE `stores` (
 -- Table structure for table `store_products`
 --
 
-CREATE TABLE `store_products` (
+CREATE TABLE IF NOT EXISTS `store_products` (
   `store_id` int(50) NOT NULL,
-  `product_id` int(50) NOT NULL
+  `product_id` int(50) NOT NULL,
+  KEY `store_id` (`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
--- Indexes for dumped tables
+-- RELATIONS FOR TABLE `store_products`:
+--   `store_id`
+--       `stores` -> `id`
 --
 
---
--- Indexes for table `stores`
---
-ALTER TABLE `stores`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `store_products`
---
-ALTER TABLE `store_products`
-  ADD KEY `store_id` (`store_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `stores`
---
-ALTER TABLE `stores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
