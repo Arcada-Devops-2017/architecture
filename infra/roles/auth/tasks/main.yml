@@ -7,6 +7,69 @@
     - apache2
     - libapache2-mod-php
     - php
+    - mysql-server
+    - mysql-client
+    - python-pip
+    - libmysqlclient-dev
+    
+- name: Install the Python MySQLB module
+  pip: name=MySQL-python
+    
+- name: Copy the root credentials as .my.cnf file
+  template: src=root.cnf.j2 dest=~/.my.cnf mode=0600
+
+- name: Update MySQL root password for all root accounts
+  register: root_password
+  mysql_user:
+    name: root
+    host: "{{ item }}"
+    password: "{{ mysql_root_pass }}" 
+    state: present
+  with_items:
+    - "{{ ansible_hostname }}"
+    - "127.0.0.1"
+    - "::1"
+    - localhost
+
+- name: Create a new database with name 'Auth'
+  mysql_db:
+    name: Auth
+    state: present
+
+- name: Setup app mysql user
+  register: user_password
+  mysql_user:
+    name: auth
+    host: "{{ item }}"
+    priv: "auth.*:ALL" 
+    password: "{{ mysql_user_pass }}"
+    state: present
+  with_items:
+    - "127.0.0.1"
+    - "localhost"
+
+- name: Ensure Anonymous user(s) are not in the database
+  register: anon_user
+  mysql_user: 
+    name: ''
+    host: "{{ item }}"
+    state: absent
+  with_items:
+    - localhost
+    - "127.0.0.1"
+    - "{{ ansible_hostname }}"
+
+- name: Remove the test database
+  register: test_db
+  mysql_db:
+    name: test
+    state: absent
+
+- name: Restart mysql
+  when: root_password.changed or anon_user.changed or test_db.changed or user_password.changed
+  service:
+    name: mysql
+    state: restarted
 
 - name: Configure apache
   register: apache_conf
