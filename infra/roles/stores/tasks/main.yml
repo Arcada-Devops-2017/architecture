@@ -37,11 +37,13 @@
     
 - name: Copy database dump file
   copy:
+    register: databasedump
     src: create.sql
     dest: /tmp
     
 - name: Import file.sql similar to mysql -u <username> -p <password> < hostname.sql
   mysql_db:
+    when: databasedump.channged
     state: import
     name: all
     target: /tmp/create.sql
