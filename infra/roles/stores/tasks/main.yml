@@ -35,6 +35,19 @@
   mysql_db:
     name: stores
     state: present
+    
+- name: Copy database dump file
+  register: databasedump
+  copy:
+    src: create.sql
+    dest: /tmp
+    
+- name: Import file.sql similar to mysql -u <username> -p <password> < hostname.sql
+  when: databasedump.changed
+  mysql_db:
+    state: import
+    name: all
+    target: /tmp/create.sql
 
 - name: Setup app mysql user
   register: user_password
