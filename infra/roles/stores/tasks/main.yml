@@ -46,7 +46,7 @@
   when: databasedump.changed
   mysql_db:
     state: import
-    name: all
+    name: stores
     target: /tmp/create.sql
 
 - name: Setup app mysql user
