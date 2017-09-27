@@ -43,7 +43,7 @@
     - auth
 
 # Products server
-- hosts: tag_Name_Products
+- hosts: tag_Name_Product
   user: ubuntu
   become: yes
   roles:

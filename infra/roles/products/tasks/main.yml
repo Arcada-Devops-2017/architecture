@@ -14,7 +14,7 @@
     dest: /etc/apache2/sites-enabled/demo.conf
 
 - name: Restart apache
-  when: apache_conf.changed or apache_mods.changed
+  when: apache_conf.changed
   service:
     name: apache2
     state: restarted
@@ -36,7 +36,7 @@
 - name: Clone application repo
   git:
     repo: 'https://github.com/Arcada-Devops-2017/products.git'
-    dest: /var/www/products
+    dest: /var/www/product
 
 - name: Upload restart script
   copy:
