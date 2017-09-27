@@ -43,7 +43,7 @@
     
 - name: Import file.sql similar to mysql -u <username> -p <password> < hostname.sql
   mysql_db:
-    when: databasedump.channged
+    when: databasedump.changed
     state: import
     name: all
     target: /tmp/create.sql
