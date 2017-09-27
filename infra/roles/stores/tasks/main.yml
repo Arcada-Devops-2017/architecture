@@ -36,8 +36,8 @@
     state: present
     
 - name: Copy database dump file
+  register: databasedump
   copy:
-    register: databasedump
     src: create.sql
     dest: /tmp
     
