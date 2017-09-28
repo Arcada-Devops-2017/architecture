@@ -33,7 +33,7 @@
 
 - name: Create a new database with name 'Products'
   mysql_db:
-    name: Products
+    name: products
     state: present
 
 - name: Setup app mysql user
