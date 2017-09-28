@@ -33,7 +33,7 @@
 
 - name: Create a new database with name 'Auth'
   mysql_db:
-    name: Auth
+    name: auth
     state: present
 
 - name: Setup app mysql user
