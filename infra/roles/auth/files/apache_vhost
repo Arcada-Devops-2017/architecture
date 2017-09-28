@@ -1,4 +1,4 @@
 <VirtualHost *:80>
-    DocumentRoot "/var/www/auth"
+    DocumentRoot "/var/www/auth/src"
     ServerName auth.arcada.nitor.zone
 </VirtualHost>
