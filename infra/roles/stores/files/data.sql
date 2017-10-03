@@ -1,4 +1,4 @@
->INSERT INTO `stores` (`id`, `name`, `address`, `phone`, `email`) VALUES
+INSERT INTO `stores` (`id`, `name`, `address`, `phone`, `email`) VALUES
 (1, 'Kappa Nokia', 'Linnoitustie 39, 37120 Nokia', '041 678 5253', 'nokia@kappa.fi'),
 (2, 'Kappa Kytönen', 'Ilmalankuja 99, 28430 Lahti', '040 300 3518', 'lahti@kappa.fi'),
 (3, 'Kappa Luhtanen', 'Ilmalankuja 99, 28430 Pori', '044 591 9996', 'pori@kappa.fi'),
