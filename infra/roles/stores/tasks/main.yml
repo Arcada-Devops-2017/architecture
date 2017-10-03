@@ -36,6 +36,11 @@
     name: stores
     state: present
     
+- name: Stores data (sql)
+  copy:
+    src: data.sql
+    dest: /home/ubuntu
+
 - name: Copy database dump file
   register: databasedump
   copy:
