@@ -113,14 +113,9 @@
     group: ubuntu
     mode: 0700
 
-- user:
-    name: orders
-    comment: "orders"
-    uid: 1337
-
 - name: Set up single authorized key
   authorized_key:
-    user: orders
+    user: ubuntu
     state: present
     key: '{{ item }}'
   with_file:
