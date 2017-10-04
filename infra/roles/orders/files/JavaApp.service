@@ -2,6 +2,7 @@
 Description=JavaApp
 [Service]
 ExecStart=/usr/bin/java -jar /home/ubuntu/app.jar
+WorkingDirectory=/home/ubuntu
 Type=simple
 User=ubuntu
 [Install]
